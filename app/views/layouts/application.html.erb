@@ -10,10 +10,17 @@
 
   <body class='container-fluid'>
     <%= render 'layouts/header' %>
-    <hr>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
-    <hr>
+    <div class="wrapper">
+      <% unless user_signed_in? || current_page?('/') %>
+        <div class="new_user_modal">
+          <%= render 'layouts/messages'%>
+          <%= yield %>
+        </div>
+      <% else %>
+        <%= render 'layouts/messages'%>
+        <%= yield %>
+      <% end %>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>
