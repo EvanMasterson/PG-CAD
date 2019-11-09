@@ -18,40 +18,47 @@
 
 /* BASIC */
 
-html {
-    background-color: #56baed;
-}
-
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-image: url('background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar {
     height: auto;
     min-height: 50px;
+    background: white !important;
 }
 
-#header {
-    background: none !important;
+.loggedInSection {
+    background-color: white;
+    margin: auto;
+    width:80%;
+    height:auto;
+    position: fixed;
+    top:120px;
+    padding:20px;
 }
 
 #footer {
     color: grey;
     text-align: center;
-    height: auto;
     min-height: 100px;
     font-weight: bold;
+    margin-top: 100px;
     left: 0;
     bottom: 0;
     width: 100%;
 }
 
 li a {
-    font-family:Verdana !important;
-    color: black !important;
     text-decoration: none !important;
-    font-size: 1.2em;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #818181;
 }
 
 a {
@@ -60,7 +67,15 @@ a {
     text-decoration: none;
     font-weight: 400;
 }
-
+h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 40px 8px 10px 8px;
+    color: #626262;
+}
 h2 {
     text-align: center;
     font-size: 16px;
@@ -68,7 +83,7 @@ h2 {
     text-transform: uppercase;
     display:inline-block;
     margin: 40px 8px 10px 8px;
-    color: #cccccc;
+    color: #818181;
 }
 
 /*CSS for Devise messages*/
@@ -149,7 +164,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     transform: scale(0.95);
 }
 
-.field #user_email, #user_password, #user_password_confirmation {
+.field #user_email, #user_password, #user_password_confirmation, #user_current_password {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
