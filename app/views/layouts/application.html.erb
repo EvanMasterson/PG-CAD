@@ -3,22 +3,23 @@
   <head>
     <title>Cloud Storage</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
   </head>
 
-  <body class='container-fluid'>
+  <body class='container-fluid' >
     <%= render 'layouts/header' %>
     <div class="wrapper">
-      <% unless user_signed_in? || current_page?('/') %>
+      <% unless (current_page?('/profile') || current_page?('/'))%>
         <div class="new_user_modal">
           <%= render 'layouts/messages'%>
           <%= yield %>
         </div>
       <% else %>
-        <%= render 'layouts/messages'%>
-        <%= yield %>
+        <div class="loggedInSection">
+          <%= render 'layouts/messages'%>
+          <%= yield %>
+        </div>
       <% end %>
     </div>
     <%= render 'layouts/footer' %>
