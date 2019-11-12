@@ -2,7 +2,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   <h2>Edit Profile</h2>
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "example@mail.com" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "example@mail.com", :disabled => true%>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
