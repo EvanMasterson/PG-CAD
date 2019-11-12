@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :storages
   resources :uploaded_files
   devise_for :users, path: 'user'
   
