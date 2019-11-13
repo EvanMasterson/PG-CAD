@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :storages
-  resources :uploaded_files
+  resources :storages, :uploaded_files
+  resources :storages do
+    resources :uploaded_files
+  end
   devise_for :users, path: 'user'
   
   root :to =>'pages#index'
