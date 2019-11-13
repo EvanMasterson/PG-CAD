@@ -4,7 +4,8 @@ class StoragesController < ApplicationController
   # GET /storages
   # GET /storages.json
   def index
-    @storages = Storage.all
+    @user = User.find(current_user.id)
+    @storages = @user.storages
   end
 
   # GET /storages/1
@@ -25,9 +26,11 @@ class StoragesController < ApplicationController
   # POST /storages.json
   def create
     @storage = Storage.new(storage_params)
+    @user = User.find(current_user.id)
 
     respond_to do |format|
       if @storage.save
+        @user.storages << @storage
         format.html { redirect_to @storage, notice: 'Storage was successfully created.' }
         format.json { render :show, status: :created, location: @storage }
       else

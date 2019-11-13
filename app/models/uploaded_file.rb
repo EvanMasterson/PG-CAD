@@ -1,3 +1,3 @@
 class UploadedFile < ApplicationRecord
-  has_and_belongs_to_many :storages
+  belongs_to :storages, optional: true
 end
