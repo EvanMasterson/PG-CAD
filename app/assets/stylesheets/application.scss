@@ -38,7 +38,6 @@ body {
     margin: auto;
     width:80%;
     height:auto;
-    position: fixed;
     top:120px;
     padding:20px;
 }
@@ -130,7 +129,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=button], input[type=submit], input[type=reset], .change_password  {
     background-color: #56baed;
     border: none;
     color: white;
