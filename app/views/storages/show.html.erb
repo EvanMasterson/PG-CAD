@@ -10,5 +10,5 @@
   <%= @storage.name %>
 </p>
 
-<%= link_to 'Edit', edit_storage_path(@storage) %> |
+<%= link_to 'Files', storage_uploaded_files_path(:storage_id => @storage.id) %> |
 <%= link_to 'Back', storages_path %>

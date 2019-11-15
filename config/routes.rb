@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :storages, :uploaded_files
+  # resources :storages#, :uploaded_files
   resources :storages do
     resources :uploaded_files
   end

@@ -4,7 +4,8 @@ class UploadedFilesController < ApplicationController
   # GET /uploaded_files
   # GET /uploaded_files.json
   def index
-    @uploaded_files = UploadedFile.all
+    @storage = Storage.find(params[:storage_id])
+    @uploaded_files = @storages.uploaded_files#UploadedFile.find(params[:storage_id])
   end
 
   # GET /uploaded_files/1
@@ -25,9 +26,11 @@ class UploadedFilesController < ApplicationController
   # POST /uploaded_files.json
   def create
     @uploaded_file = UploadedFile.new(uploaded_file_params)
+    @storage = Storage.find(params[:storage_id])
 
     respond_to do |format|
       if @uploaded_file.save
+        @storage.uploaded_files << @uploaded_file
         format.html { redirect_to @uploaded_file, notice: 'Uploaded file was successfully created.' }
         format.json { render :show, status: :created, location: @uploaded_file }
       else
