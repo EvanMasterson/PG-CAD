@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Loads .env file containing environment variables
+gem 'dotenv-rails'
 # Bootstrap gem for styling
 gem 'bootstrap'
 # Handles user authentication
