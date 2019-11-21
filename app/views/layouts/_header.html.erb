@@ -7,9 +7,6 @@
     <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item nav-link">
-          <%= link_to 'Profile', profile_path %>
-        </li>
-        <li class="nav-item nav-link">
           <%= link_to 'Sign Out', destroy_user_session_path, :method =>:delete %>
         </li>
       <% else %>

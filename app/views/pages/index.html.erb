@@ -1,68 +1,18 @@
 <% unless user_signed_in? %>
-  <section class="pricing py-5">
-  <div class="container">
-    <div class="row">
-      <!-- Free Tier -->
-      <div class="col-lg-4">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
-            <h6 class="card-price text-center">€0<span class="period">/month</span></h6>
-            <hr>
-            <ul class="fa-ul">
-              <li>Single User</li>
-              <li>5GB Storage</li>
-              <li>10 Public Projects</li>
-              <li>Community Access</li>
-            </ul>
-            <a href="/user/sign_up">
-              <input type="submit" value="subscribe">
-            </a>
-          </div>
+  <%= render 'layouts/subscriptions'%>
+<% else %>
+  <section >
+    <div class="container">
+      <div class="row profile">
+        <div class="col-md-3">
+          <%= render 'layouts/profile'%>
         </div>
-      </div>
-      <!-- Plus Tier -->
-      <div class="col-lg-4">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
-            <h6 class="card-price text-center">€9<span class="period">/month</span></h6>
-            <hr>
-            <ul class="fa-ul">
-              <li><strong>5 Users</strong></li>
-              <li></span>25GB Storage</li>
-              <li>100 Public Projects</li>
-              <li>Community Access</li>
-            </ul>
-            <a href="/user/sign_up">
-              <input type="submit" value="subscribe">
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
-            <h6 class="card-price text-center">€12<span class="period">/month</span></h6>
-            <hr>
-            <ul class="fa-ul">
-              <li><strong>10 Users</strong></li>
-              <li></span>50GB Storage</li>
-              <li>Unlimited Public Projects</li>
-              <li>Community Access</li>
-            </ul>
-            <a href="/user/sign_up">
-              <input type="submit" value="subscribe">
-            </a>
+        <div class="col-md-9">
+          <div class="profile-content">
+            <%= render 'layouts/subscriptions'%>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<% else %>
-  <section >
-    <h1>Welcome</h1>
   </section>
 <% end %>

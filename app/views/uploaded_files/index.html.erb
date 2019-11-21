@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @storage.name %></h2>
 
-<h1>Uploaded Files</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
       <th>Size</th>
       <th>Description</th>
-      <th>Unique url</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,15 +16,14 @@
         <td><%= uploaded_file.name %></td>
         <td><%= uploaded_file.size %></td>
         <td><%= uploaded_file.description %></td>
-        <td><%= uploaded_file.unique_url %></td>
-        <td><%= link_to 'Show', uploaded_file %></td>
-        <td><%= link_to 'Edit', edit_uploaded_file_path(uploaded_file) %></td>
-        <td><%= link_to 'Destroy', uploaded_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete File', [@storage, uploaded_file], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%= link_to "Upload File", new_storage_uploaded_file_path(@storage) %> | <%= link_to 'Back', storages_path %>
+<hr>
+<%= link_to "Close", root_path %>
 
-<%= link_to 'New Uploaded File', new_uploaded_file_path %>
