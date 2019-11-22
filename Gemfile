@@ -7,11 +7,8 @@ end
 
 # Loads .env file containing environment variables
 gem 'dotenv-rails'
-<<<<<<< HEAD
 # AWS to upload through S3
 gem 'aws-sdk-s3'
-=======
->>>>>>> ee06cab5529076239de6404760968b42eca30448
 # Bootstrap gem for styling
 gem 'bootstrap'
 # Handles user authentication
