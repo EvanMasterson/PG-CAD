@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  # TODO: Create domain name to use a from email
+  default from: 'x14426302@student.ncirl.ie'
   layout 'mailer'
 end

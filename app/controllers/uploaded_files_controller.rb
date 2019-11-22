@@ -1,10 +1,11 @@
 class UploadedFilesController < ApplicationController
+  before_action :get_storage
   before_action :set_uploaded_file, only: [:show, :edit, :update, :destroy]
 
   # GET /uploaded_files
   # GET /uploaded_files.json
   def index
-    @uploaded_files = UploadedFile.all
+    @uploaded_files = @storage.uploaded_files
   end
 
   # GET /uploaded_files/1
@@ -14,7 +15,7 @@ class UploadedFilesController < ApplicationController
 
   # GET /uploaded_files/new
   def new
-    @uploaded_file = UploadedFile.new
+    @uploaded_file = @storage.uploaded_files.build
   end
 
   # GET /uploaded_files/1/edit
@@ -24,11 +25,11 @@ class UploadedFilesController < ApplicationController
   # POST /uploaded_files
   # POST /uploaded_files.json
   def create
-    @uploaded_file = UploadedFile.new(uploaded_file_params)
+    @uploaded_file = @storage.uploaded_files.build(uploaded_file_params)
 
     respond_to do |format|
       if @uploaded_file.save
-        format.html { redirect_to @uploaded_file, notice: 'Uploaded file was successfully created.' }
+        format.html { redirect_to storage_uploaded_files_path(@storage), notice: 'Uploaded file was successfully created.' }
         format.json { render :show, status: :created, location: @uploaded_file }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class UploadedFilesController < ApplicationController
   def update
     respond_to do |format|
       if @uploaded_file.update(uploaded_file_params)
-        format.html { redirect_to @uploaded_file, notice: 'Uploaded file was successfully updated.' }
+        format.html { redirect_to storage_uploaded_file_path(@storage), notice: 'Uploaded file was successfully updated.' }
         format.json { render :show, status: :ok, location: @uploaded_file }
       else
         format.html { render :edit }
@@ -56,19 +57,24 @@ class UploadedFilesController < ApplicationController
   def destroy
     @uploaded_file.destroy
     respond_to do |format|
-      format.html { redirect_to uploaded_files_url, notice: 'Uploaded file was successfully destroyed.' }
+      format.html { redirect_to storage_uploaded_files_path(@storage), notice: 'Uploaded file was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def get_storage
+      @storage = Storage.find(params[:storage_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_uploaded_file
-      @uploaded_file = UploadedFile.find(params[:id])
+      @uploaded_file = @storage.uploaded_files.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def uploaded_file_params
-      params.require(:uploaded_file).permit(:name, :size, :description, :unique_url)
+      params.require(:uploaded_file).permit(:name, :size, :description, :unique_url, :storage_id)
     end
 end

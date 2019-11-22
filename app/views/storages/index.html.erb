@@ -1,0 +1,28 @@
+<h2>My Storages</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="th-sm">Name</th>
+      <th class="th-sm">Size</th>
+      <th class="th-sm" colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @storages.each do |storage| %>
+      <tr>
+        <td><%= storage.name %></td>
+        <td><%= storage.size %></td>
+        <td><%= link_to 'Open', storage_uploaded_files_path(storage.id) %></td>
+        <td><%= link_to 'Delete', storage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Storage', new_storage_path %>
+<hr>
+<%= link_to "Close", root_path %>

@@ -1,4 +1,4 @@
-<%= form_for(uploaded_file) do |f| %>
+<%= form_for([@storage, uploaded_file]) do |f| %>
   <% if uploaded_file.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(uploaded_file.errors.count, "error") %> prohibited this uploaded_file from being saved:</h2>
