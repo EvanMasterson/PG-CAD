@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Custom built validation gem for files/emails/passwords
+# https://rubygems.org/gems/rails-validator
+gem 'rails-validator'
 # Loads .env file containing environment variables
 gem 'dotenv-rails'
 # AWS to upload through S3

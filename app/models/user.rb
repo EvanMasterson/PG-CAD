@@ -6,11 +6,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
-  validate :password_complexity
+  validate :email_input
+  validate :password_input
 
-  def password_complexity
-    # https://github.com/plataformatec/devise/wiki/How-To:-Set-up-simple-password-complexity-requirements
-    return if password.blank? || password =~ /\A(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\W]).{8,}\z/
+  def email_input
+    return if RailsValidator.validate_email(email)
+
+    errors.add :email, 'is not a valid email'
+  end
+
+  def password_input
+    return if RailsValidator.validate_password(password) 
 
     errors.add :password, 'should include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
   end
