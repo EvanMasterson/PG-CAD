@@ -25,6 +25,9 @@ class UploadedFilesController < ApplicationController
   # POST /uploaded_files
   # POST /uploaded_files.json
   def create
+    # TODO validate file upload input
+    # RailsValidator.validate_file(params[:file].path)
+    
     @uploaded_file = @storage.uploaded_files.build(uploaded_file_params)
 
     respond_to do |format|
