@@ -1,4 +1,7 @@
+require 'observer'
 class UploadedFilesController < ApplicationController
+  include Observable
+  before_action :observer, only: [:share_file]
   before_action :get_storage
   before_action :set_uploaded_file, only: [:show, :edit, :update, :destroy]
 
@@ -65,7 +68,17 @@ class UploadedFilesController < ApplicationController
     end
   end
 
+  def share_file
+    # TODO implement share file logic, pass user, storage and file to observer to create a valid link url
+    # changed
+    # notify_observers(@user, @storage, @file)
+  end
+
   private
+
+    def observer
+      add_observer(EmailNotifier.new)
+    end
 
     def get_storage
       @storage = Storage.find(params[:storage_id])
