@@ -18,8 +18,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  # TODO: Create domain name to use a from email
-  config.mailer_sender = 'x14426302@student.ncirl.ie'
+  config.mailer_sender = 'no-reply@ncicloud.live'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
