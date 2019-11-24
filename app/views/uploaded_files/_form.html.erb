@@ -1,15 +1,4 @@
-<%= form_for([@storage, uploaded_file]) do |f| %>
-  <% if uploaded_file.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(uploaded_file.errors.count, "error") %> prohibited this uploaded_file from being saved:</h2>
-
-      <ul>
-      <% uploaded_file.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for ([@storage, uploaded_file]) do |f| %>
 
   <div class="field">
     <%= f.label :name %>
@@ -17,21 +6,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :size %>
-    <%= f.number_field :size %>
+    add a file....
+    <%= f.file_field :image %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= submit_tag "Upload" %>
   </div>
 
-  <div class="field">
-    <%= f.label :unique_url %>
-    <%= f.text_field :unique_url %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= image_tag(@uploaded_file.image_url.to_s) %>
 <% end %>

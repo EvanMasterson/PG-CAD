@@ -1,24 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @uploaded_file.name %>
+  <%= image_tag(@uploaded_file.image_url(:thumb).to_s) if  @uploaded_file.image? %>
+  <br>
+  <b><%= @uploaded_file.name %></b> | <%= @uploaded_file.created_at.strftime("%F") %>
 </p>
 
-<p>
-  <strong>Size:</strong>
-  <%= @uploaded_file.size %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @uploaded_file.description %>
-</p>
-
-<p>
-  <strong>Unique url:</strong>
-  <%= @uploaded_file.unique_url %>
-</p>
-
-<%= link_to 'Edit', edit_uploaded_file_path(@uploaded_file) %> |
+<%= link_to 'Download', "#{@uploaded_file.image}" %>
 <%= link_to 'Back', storage_uploaded_files_path(@storage) %>
