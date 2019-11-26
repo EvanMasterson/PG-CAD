@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validate :email_input
   validate :password_input
 
+  PACKAGES = Hash['FREE - 5GB Storage' => 5, 'PLUS - 25GB Storage' => 25, 'EXTRA - 50GB Storage' => 50]
+
   def email_input
     return if RailsValidator.validate_email(email)
 

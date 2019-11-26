@@ -203,6 +203,22 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     padding: 20px;
 }
 
+.storage_and_file_creation {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 500px;
+    position: relative;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
+    padding-bottom: 50px;
+}
+
 .new_user_modal {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;

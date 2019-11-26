@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources :storages do
     resources :uploaded_files
   end
-  devise_for :users, path: 'user'
-  
+
+  devise_for :users, path: 'user', controllers: {
+      :registrations => "users/registrations" }
+
   root :to =>'pages#index'
   
   get '*path' => redirect('/')

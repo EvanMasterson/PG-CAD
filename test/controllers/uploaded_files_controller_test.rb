@@ -17,7 +17,7 @@ class UploadedFilesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create uploaded_file" do
     assert_difference('UploadedFile.count') do
-      post uploaded_files_url, params: { uploaded_file: { description: @uploaded_file.description, name: @uploaded_file.name, size: @uploaded_file.size, unique_url: @uploaded_file.unique_url } }
+      post uploaded_files_url, params: { uploaded_file: { name: @uploaded_file.name, size: @uploaded_file.size, unique_url: @uploaded_file.unique_url } }
     end
 
     assert_redirected_to uploaded_file_url(UploadedFile.last)
@@ -34,7 +34,7 @@ class UploadedFilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update uploaded_file" do
-    patch uploaded_file_url(@uploaded_file), params: { uploaded_file: { description: @uploaded_file.description, name: @uploaded_file.name, size: @uploaded_file.size, unique_url: @uploaded_file.unique_url } }
+    patch uploaded_file_url(@uploaded_file), params: { uploaded_file: { name: @uploaded_file.name, size: @uploaded_file.size, unique_url: @uploaded_file.unique_url } }
     assert_redirected_to uploaded_file_url(@uploaded_file)
   end
 
