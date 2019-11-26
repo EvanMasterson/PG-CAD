@@ -56,9 +56,11 @@ class UploadedFilesController < ApplicationController
   end
 
   def share_file
-    # TODO implement share file logic, pass user, storage and file to observer to create a valid link url
-    # changed
-    # notify_observers(@user, @storage, @file)
+    # @email = 
+    # @uploaded_file =
+
+    changed
+    notify_observers(@email, @uploaded_file.image)
   end
 
   private

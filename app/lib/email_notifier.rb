@@ -1,7 +1,7 @@
 class EmailNotifier
-  def update(user, storage, file)
-    if user && storage && file
-      NotificationMailer.send_mail(user, storage, file).deliver_now
+  def update(email, file_url)
+    if email && file_url
+      NotificationMailer.send_mail(email, file_url).deliver_now
     end
   end
 end
