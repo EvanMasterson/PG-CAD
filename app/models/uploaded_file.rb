@@ -6,6 +6,6 @@ class UploadedFile < ApplicationRecord
 
   def set_self
     self[:unique_url] = SecureRandom.uuid
-    self[:size] = 1
+    self[:size] = image.size
   end
 end

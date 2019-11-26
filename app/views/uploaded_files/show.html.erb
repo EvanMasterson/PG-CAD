@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= image_tag(@uploaded_file.image_url(:thumb).to_s) if  @uploaded_file.image? %>
-  <br>
-  <b><%= @uploaded_file.name %></b> | <%= @uploaded_file.created_at.strftime("%F") %>
+    <%= image_tag(@uploaded_file.image_url(:thumb).to_s, class:"img-responsive", :alt => "no image available") if  @uploaded_file.image?  %>
+    <br>
+    <b><%= @uploaded_file.name %></b> | <%= @uploaded_file.created_at.strftime("%F") %>
 </p>
 
 <%= link_to 'Download', "#{@uploaded_file.image}" %>

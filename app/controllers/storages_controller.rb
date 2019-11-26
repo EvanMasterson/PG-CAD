@@ -1,10 +1,10 @@
 class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
+  before_action :get_user
 
   # GET /storages
   # GET /storages.json
   def index
-    @user = User.find(current_user.id)
     @storages = @user.storages
   end
 
@@ -26,8 +26,6 @@ class StoragesController < ApplicationController
   # POST /storages.json
   def create
     @storage = Storage.new(storage_params)
-    @user = User.find(current_user.id)
-
     respond_to do |format|
       if @storage.save
         @user.storages << @storage
@@ -44,6 +42,7 @@ class StoragesController < ApplicationController
   # PATCH/PUT /storages/1.json
   def update
     respond_to do |format|
+      @storage.set_size
       if @storage.update(storage_params)
         format.html { redirect_to @storage, notice: 'Storage was successfully updated.' }
         format.json { render :show, status: :ok, location: @storage }
@@ -65,6 +64,10 @@ class StoragesController < ApplicationController
   end
 
   private
+  def get_user
+    @user = User.find(current_user.id)
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_storage
       @storage = Storage.find(params[:id])

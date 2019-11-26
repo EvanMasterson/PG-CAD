@@ -10,16 +10,21 @@
   <body class='container-fluid' >
     <%= render 'layouts/header' %>
     <div class="wrapper">
-      <% unless (current_page?('/profile') || current_page?('/'))%>
+      <% if current_page?('/')  %>
+        <div class="loggedInSection">
+          <%= render 'layouts/messages'%>
+          <%= yield %>
+        </div>
+      <% elsif current_page?('/user/edit') || !user_signed_in?%>
         <div class="new_user_modal">
           <%= render 'layouts/messages'%>
           <%= yield %>
         </div>
       <% else %>
-        <div class="loggedInSection">
-          <%= render 'layouts/messages'%>
-          <%= yield %>
-        </div>
+      <div class="loggedInSection">
+        <%= render 'layouts/messages'%>
+        <%= yield %>
+      </div>
       <% end %>
     </div>
     <%= render 'layouts/footer' %>
