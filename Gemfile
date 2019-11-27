@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Carrierwave s3 storage using fog
+gem "fog-aws"
 # Custom built validation gem for files/emails/passwords
 # https://rubygems.org/gems/rails-validator
 gem 'rails-validator'

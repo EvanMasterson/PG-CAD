@@ -6,5 +6,5 @@
     <b><%= @uploaded_file.name %></b> | <%= @uploaded_file.created_at.strftime("%F") %>
 </p>
 
-<%= link_to 'Download', "#{@uploaded_file.image}" %>
+<%= link_to 'Download', download_file_storage_uploaded_file_path(@storage) %>
 <%= link_to 'Back', storage_uploaded_files_path(@storage) %>
