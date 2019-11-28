@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   # resources :storages, :uploaded_files
   resources :storages do
-    resources :uploaded_files
+    resources :uploaded_files do
+      member do
+        get :download_file
+      end
+    end
   end
 
   devise_for :users, path: 'user', controllers: {

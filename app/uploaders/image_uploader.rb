@@ -5,13 +5,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   after :remove, :delete_empty_upstream_dirs # Clean up empty directories when the files in them are deleted
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "2c21erab-2o66-4564-9d36-26580b7659es/#{model.unique_url}"
+    "uploads/#{model.unique_url}"
   end
 
   def delete_empty_upstream_dirs

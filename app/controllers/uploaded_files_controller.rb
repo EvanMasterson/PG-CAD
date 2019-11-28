@@ -55,6 +55,16 @@ class UploadedFilesController < ApplicationController
     end
   end
 
+  def download_file
+    set_uploaded_file
+    file = @uploaded_file.image
+
+    if file.try(:file).exists?
+      data = open(file.url)
+      send_data data.read, type: data.content_type, x_sendfile: true
+    end
+  end
+
   def share_file
     # @email = 
     # @uploaded_file =
