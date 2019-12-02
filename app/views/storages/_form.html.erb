@@ -2,7 +2,6 @@
   <% if storage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(storage.errors.count, "error") %> prohibited this storage from being saved:</h2>
-
       <ul>
       <% storage.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,11 +11,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-sm-12">
+          <%= f.text_field :name, :class=> "text_input_fields storage_input ", :placeholder=>"New Storage Name" %>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+          <%= f.submit%>
+      </div>
+      </div>
+    </div>
   </div>
 <% end %>

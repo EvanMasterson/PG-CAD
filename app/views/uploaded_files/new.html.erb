@@ -1,5 +1,4 @@
-<h1>Upload File</h1>
-
+<div class="breadcrumbs">
+  <%= link_to 'home', root_path %> / <%= link_to 'storages', storages_path %> / <%= link_to @storage.name, storage_uploaded_files_path(@storage) %>
+</div>
 <%= render 'form', uploaded_file: @uploaded_file %>
-
-<%= link_to 'Back', storage_uploaded_files_path(@storage) %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :uploaded_files do
       member do
         get :download_file
+        get :download_shared_file
       end
     end
   end

@@ -7,7 +7,16 @@
     <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item nav-link">
-          <%= link_to 'Sign Out', destroy_user_session_path, :method =>:delete %>
+          <%= link_to 'My Storages  |', storages_path%>
+        </li>
+        <li class="nav-item nav-link">
+        <%= link_to 'Edit Profile  |', edit_user_registration_path%>
+        </li>
+        <li class="nav-item nav-link">
+          <%= link_to "DELETE ACCOUNT  |", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
+        </li>
+        <li class="nav-item nav-link">
+          <%= link_to 'Sign Out ', destroy_user_session_path, :method =>:delete %>
         </li>
       <% else %>
         <li class="nav-item nav-link">

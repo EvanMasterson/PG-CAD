@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validate :email_input
   validate :password_input
 
-  PACKAGES = Hash['FREE - 5GB Storage' => 5, 'PLUS - 25GB Storage' => 25, 'EXTRA - 50GB Storage' => 50]
+  PACKAGES = Hash[ 5 => 'FREE - 5GB Storage', 25 => 'PLUS - 25GB Storage', 50 => 'EXTRA - 50GB Storage' ]
 
   def email_input
     return if RailsValidator.validate_email(email)
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def password_input
-    return if RailsValidator.validate_password(password) 
+    return if RailsValidator.validate_password(password)
 
     errors.add :password, 'should include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
   end

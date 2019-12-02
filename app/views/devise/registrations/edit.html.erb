@@ -21,6 +21,10 @@
     <%= f.password_field :current_password, autocomplete: "current-password", placeholder:"current password" %>
   </div>
 
+  <div class="field">
+    <%= f.select :selected_package, options_for_select(User::PACKAGES.invert, @user.selected_package.to_s), {prompt: true} %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

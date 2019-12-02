@@ -1,44 +1,9 @@
-<div class="profile-sidebar">
-  <!-- SIDEBAR USERPIC -->
-  <div class="profile-usertitle">
-    <div class="profile-userpic">
-      <%= image_tag("user.png", :alt => "user pic") %>
-    </div><br>
-    <div class="profile-usertitle-name">
-      Hello <%= current_user.email %>
-    </div>
-    <div class="profile-usertitle-job">
-      <% if current_user.admin %>
-        <p>admin</p>
-      <% end %>
-    </div>
-    <div class="profile-usertitle-name">
-      <%= current_user.selected_package %>
-    </div>
-  </div>
-  <!-- SIDEBAR MENU -->
-  <div class="profile-usermenu">
-    <ul class="nav">
-      <li class="active">
-        <%= link_to storages_path, class: "btn btn-default" do %>
-          Storages
-        <% end %>
-      </li>
-      <li>
-        <%= link_to '/', class: "btn btn-default" do %>
-          Invite Users
-        <% end %>
-      </li>
-      <li>
-        <%= link_to edit_user_registration_path, class: "btn btn-default" do %>
-          Reset Password
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "DELETE ACCOUNT", registration_path(current_user), class: "btn btn-default" , data: { confirm: "Are you sure?" }, method: :delete %>
-      </li>
-    </ul>
-  </div>
-  <!-- END MENU -->
+<div class="float-right">
+  <% if current_user.admin %>
+    <h2>Hello admin</h2>
+  <% else %>
+    <h2>Hello <%= current_user.email %>&nbsp; &nbsp;<%= image_tag("user.png", :alt => "user pic", :id=> "profile_image")%></h2>
+  <% end %>
 </div>
+
 

@@ -1,8 +1,6 @@
-<h1>New Storage</h1>
+<div class="breadcrumbs">
+  <%= link_to 'home', root_path %> >> <%= link_to 'storages', storages_path %> >> New Storage
+</div>
 
 <%= render 'form', storage: @storage %>
-
-<%= link_to 'Back', storages_path %>
-<hr>
-<%= link_to "Close", root_path %>
 

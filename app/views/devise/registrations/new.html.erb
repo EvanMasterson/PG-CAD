@@ -15,7 +15,7 @@
   </div>
 
   <div class="field">
-    <%= f.collection_select :selected_package, User::PACKAGES.keys, :to_s, :to_s, :include_blank => false %>
+    <%= f.select :selected_package, options_for_select(User::PACKAGES.invert, @user.selected_package.to_s), {prompt: true} %>
   </div>
 
   <div class="actions">

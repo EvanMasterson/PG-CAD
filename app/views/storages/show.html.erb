@@ -1,15 +1,16 @@
-<p>
-  <strong>Size:</strong>
-  <%= @storage.size %>
-</p>
+<div class="breadcrumbs">
+  <%= link_to 'home', root_path %> >> <%= link_to 'my storages', storages_path %> >> <%= @storage.name %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @storage.name %>
-</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-sm-12">
+        <p class="text_input_fields storage_input" >Add file to <%= @storage.name %> storage</p>
+      </div>
+      <div class="col-lg-2 col-sm-12">
+        <%= link_to "Add File", new_storage_uploaded_file_path(@storage), :class=>"buttonLink"%>
+      </div>
+    </div>
+  </div>
 
-<%= link_to "Upload File", new_storage_uploaded_file_path(@storage) %> |
-<%= link_to 'Back', storages_path %>
-<hr>
-<%= link_to "Close", root_path %>
 

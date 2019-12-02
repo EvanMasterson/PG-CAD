@@ -1,6 +1,14 @@
-<h1>Editing Uploaded File</h1>
-
-<%= render 'form', uploaded_file: @uploaded_file %>
-
-<%= link_to 'Show', @uploaded_file %> |
-<%= link_to 'Back', storage_uploaded_files_path(@storage) %>
+<%= form_for ([@storage, @uploaded_file]) do |f| %>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-sm-12">
+        <% text_field :email, :class => "text_input_fields storage_input", :type => "email", :placeholder=>"enter email"%>
+        <input class = "text_input_fields storage_input", type = "email", placeholder="enter email"%>
+      </div>
+      <div class="col-lg-2 col-sm-12">
+        <%= f.submit "Share" %>
+      </div>
+    </div>
+  </div>
+<% end %>

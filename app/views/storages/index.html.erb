@@ -1,3 +1,6 @@
+<div class="breadcrumbs">
+  <%= link_to 'home', root_path %> >> storages
+</div>
 <h2>My Storages</h2>
 
 <table class="table table-hover">
@@ -25,6 +28,6 @@
 
 <br>
 
-<%= link_to 'New Storage', new_storage_path %>
-<hr>
-<%= link_to "Close", root_path %>
+<div class="field">
+  <%= link_to 'New Storage', new_storage_path, :class=>"buttonLink float-right"%>
+</div>
