@@ -28,17 +28,18 @@ class UploadedFilesController < ApplicationController
   # POST /uploaded_files
   # POST /uploaded_files.json
   def create
-    # TODO validate file upload input
-    # RailsValidator.validate_file(params[:file].path)
-
     @uploaded_file = @storage.uploaded_files.build(uploaded_file_params)
     @uploaded_file.set_self
 
+    name = params[:uploaded_file][:image].original_filename
+    size = :image.size
+
     respond_to do |format|
-      if @uploaded_file.save
+      if RailsValidator.validate_file( name, size) && @uploaded_file.save
         format.html { redirect_to storage_uploaded_files_path(@storage), notice: 'Uploaded file was successfully created.' }
         format.json { render :show, status: :created, location: @uploaded_file }
       else
+        flash[:error] = "Invalid file format"
         format.html { render :new }
         format.json { render json: @uploaded_file.errors, status: :unprocessable_entity }
       end
@@ -65,8 +66,12 @@ class UploadedFilesController < ApplicationController
     end
   end
 
+  def download_shared_file
+    set_uploaded_file
+  end
+
   def share_file
-    # @email = 
+    # @email =
     # @uploaded_file =
 
     changed
@@ -90,6 +95,6 @@ class UploadedFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def uploaded_file_params
-      params.require(:uploaded_file).permit(:name, :image)
+      params.require(:uploaded_file).permit(:name, :image, :share_id, :unique_url)
     end
 end

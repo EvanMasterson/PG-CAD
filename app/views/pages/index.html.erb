@@ -1,18 +1,8 @@
 <% unless user_signed_in? %>
   <%= render 'layouts/subscriptions'%>
 <% else %>
-  <section >
-    <div class="container">
-      <div class="row profile">
-        <div class="col-md-3">
-          <%= render 'layouts/profile'%>
-        </div>
-        <div class="col-md-9">
-          <div class="profile-content">
-            <%= render 'layouts/subscriptions'%>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <%= render 'layouts/profile'%>
+  <br><br><br>
+  <h1>Upgrade Your Subscription (<%= User::PACKAGES[current_user.selected_package] %>)</h1>
+  <%= render 'layouts/subscriptions'%>
 <% end %>

@@ -18,6 +18,13 @@
 
 /* BASIC */
 
+#profile_image{
+    width:50px;
+}
+
+.image-thumb {
+    padding-right: 30px;
+}
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
@@ -68,21 +75,31 @@ a {
 }
 h1 {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
     display:inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #626262;
+    margin: 80px 8px 30px 8px;
+    color:  #b3b3b3;
 }
 h2 {
     text-align: center;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     display:inline-block;
-    margin: 40px 8px 10px 8px;
+    margin: 40px 8px 30px 8px;
     color: #818181;
+}
+
+h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 30px 8px 10px 8px;
+    color: #b3b3b3;
 }
 
 /*CSS for Devise messages*/
@@ -129,11 +146,17 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset], .change_password  {
+.progress-bar {
+    background-color: #56baed;
+}
+
+
+input[type=button], input[type=submit], input[type=reset], .change_password, .buttonLink  {
+    min-width: 200px;
     background-color: #56baed;
     border: none;
     color: white;
-    padding: 15px 80px;
+    padding: 15px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -143,7 +166,7 @@ input[type=button], input[type=submit], input[type=reset], .change_password  {
     box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
+    margin: 5px 5px 20px 10px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -151,19 +174,23 @@ input[type=button], input[type=submit], input[type=reset], .change_password  {
     transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, .buttonLink:hover  {
     background-color: #39ace7;
+    color:white;
+    text-decoration: none;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active, .buttonLink:active  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
+    color:white;
+    text-decoration: none;
 }
 
-.field #user_email, #user_password, #user_password_confirmation, #user_current_password {
+.field #user_email, #user_password, #user_password_confirmation, #user_current_password, .text_input_fields {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -184,12 +211,26 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     border-radius: 5px 5px 5px 5px;
 }
 
-#user_email :focus , #user_password :focus, #user_password_confirmation :focus {
+.breadcrumbs a, .breadcrumbs {
+    color: #404040;
+}
+
+.storage_input{
+    width: 100% !important;
+}
+
+.breadcrumbs{
+    margin-bottom: 30px;
+    position: relative;
+    color: #b3b3b3;
+}
+
+#user_email :focus , #user_password :focus, #user_password_confirmation :focus,  .text_input_fields :focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
 }
 
-#user_email :placeholder, #user_password :placeholder, #user_password_confirmation :placeholder {
+#user_email :placeholder, #user_password :placeholder, #user_password_confirmation :placeholder .text_input_fields :placeholder {
     color: #cccccc;
 }
 

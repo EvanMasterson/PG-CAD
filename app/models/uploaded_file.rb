@@ -7,5 +7,11 @@ class UploadedFile < ApplicationRecord
   def set_self
     self[:unique_url] = SecureRandom.uuid
     self[:size] = image.size
+    self[:name] = image.filename
   end
+
+  def generate_shared_id
+    self[:share_id] = SecureRandom.uuid
+  end
+
 end

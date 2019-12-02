@@ -1,10 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="breadcrumbs">
+  <%= link_to 'home', root_path %> >> <%= link_to 'storages', storages_path %> >> <%= link_to @storage.name, storage_uploaded_files_path(@storage) %> >> <%= @uploaded_file.name %>
+</div>
 
-<p>
-    <%= image_tag(@uploaded_file.image_url(:thumb).to_s, class:"img-responsive", :alt => "no image available") if  @uploaded_file.image?  %>
-    <br>
-    <b><%= @uploaded_file.name %></b> | <%= @uploaded_file.created_at.strftime("%F") %>
-</p>
+<div class="container">
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+    <br><br><br><br>
+  </div>
+  <div class="row">
+    <div class="image-thumb col-sm">
+      <%= image_tag(@uploaded_file.image_url(:thumb).to_s, class:"img-responsive", :alt => "no image available") if  @uploaded_file.image?  %>
+    </div>
+    <div class="col-sm">
+      <table class="table table-hover">
+        <tbody>
+        <tr>
+          <th>File Name</th>
+          <td><%= @uploaded_file.name %></td>
+        </tr>
+        <tr>
+          <th>Uploaded at</th>
+          <td><%= @uploaded_file.created_at.strftime("%F") %></td>
+        </tr>
+        <tr>
+          <th>File size</th>
+          <td><%= (@uploaded_file.size / (1024.0 * 1024.0)).round(2) %> MB</td>
+        </tr>
+        </tbody>
+      </table>
 
-<%= link_to 'Download', download_file_storage_uploaded_file_path(@storage) %>
-<%= link_to 'Back', storage_uploaded_files_path(@storage) %>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <input class = "text_input_fields storage_input", type = "email", placeholder="enter email"%>
+    <%= link_to 'Share',  download_shared_file_storage_uploaded_file_path, :class=>"buttonLink btn-sm"%>
+    <%= link_to 'Download', download_file_storage_uploaded_file_path(@storage) , :class=>"buttonLink btn-sm"%>
+  </div>
+  <br><br>
+</div>
+
+

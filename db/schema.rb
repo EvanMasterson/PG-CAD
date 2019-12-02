@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191124190617) do
+ActiveRecord::Schema.define(version: 20191201120530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20191124190617) do
     t.datetime "updated_at",                null: false
     t.integer  "storage_id"
     t.string   "image"
+    t.string   "share_id"
     t.index ["storage_id"], name: "index_uploaded_files_on_storage_id", using: :btree
   end
 
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 20191124190617) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
-    t.string   "selected_package"
+    t.integer   "selected_package"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

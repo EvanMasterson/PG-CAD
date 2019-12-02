@@ -1,4 +1,6 @@
-<h2><%= @storage.name %></h2>
+<div class="breadcrumbs">
+  <%= link_to 'home', root_path %> >> <%= link_to 'storages', storages_path %> >> <%= @storage.name %>
+</div>
 
 <table class="table table-hover">
   <thead>
@@ -24,7 +26,4 @@
 </table>
 
 <br>
-<%= link_to "Upload File", new_storage_uploaded_file_path(@storage) %> | <%= link_to 'Back', storages_path %>
-<hr>
-<%= link_to "Close", root_path %>
-
+<%= link_to "Upload File", new_storage_uploaded_file_path(@storage), :class=>"buttonLink btn-sm float-right" %>

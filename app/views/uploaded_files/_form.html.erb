@@ -1,17 +1,13 @@
 <%= form_for ([@storage, uploaded_file]) do |f| %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-sm-12">
+        <p class="text_input_fields storage_input" ><%= f.file_field :image %></p>
+      </div>
+      <div class="col-lg-2 col-sm-12">
+        <%= f.submit "Upload" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    add a file....
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= submit_tag "Upload" %>
-  </div>
-
 <% end %>
