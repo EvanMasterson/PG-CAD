@@ -1,8 +1,9 @@
 class NotificationMailer < ApplicationMailer
-  def send_mail(email, file_url)
+  def send_mail(email, current_user, unique_url)
     @email = email
-    @file_url = file_url
-    if @email && @file_url
+    @unique_url = unique_url
+    @current_user = current_user
+    if @email && @current_user && @unique_url
       mail(to: @email, subject: 'File Shared', template_path: 'layouts', template_name: 'file_shared_notification')
     end
   end

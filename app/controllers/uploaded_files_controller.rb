@@ -2,7 +2,7 @@ require 'observer'
 class UploadedFilesController < ApplicationController
   include Observable
   before_action :observer, only: [:share_file]
-  before_action :get_storage
+  before_action :get_storage, except: [:download_shared_file, :share_file]
   before_action :set_uploaded_file, only: [:show, :edit, :update, :destroy]
 
   # GET /uploaded_files
@@ -62,20 +62,28 @@ class UploadedFilesController < ApplicationController
 
     if file.try(:file).exists?
       data = open(file.url)
-      send_data data.read, type: data.content_type, x_sendfile: true
+      send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
     end
   end
 
   def download_shared_file
-    set_uploaded_file
+    @uploaded_file = UploadedFile.find_by_unique_url(params[:unique_url])
+    file = @uploaded_file.image
+
+    if file.try(:file).exists?
+      data = open(file.url)
+      send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
+    end
   end
 
   def share_file
-    # @email =
-    # @uploaded_file =
+    @storage = Storage.find_by_id(params[:storage_id])
+    @uploaded_file = @storage.uploaded_files.find_by_id(params[:uploaded_file_id])
+    @email = params[:email]
+    @current_user = current_user
 
     changed
-    notify_observers(@email, @uploaded_file.image)
+    notify_observers(@email, @current_user, @uploaded_file.unique_url)
   end
 
   private
