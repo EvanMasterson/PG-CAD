@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   validate :email_input
   validate :password_input
+  validate  :selected_package
 
   PACKAGES = Hash[ 5 => 'FREE - 5GB Storage', 25 => 'PLUS - 25GB Storage', 50 => 'EXTRA - 50GB Storage' ]
 
