@@ -22,7 +22,7 @@
   </div>
 
   <div class="field">
-    <%= f.select :selected_package, options_for_select(User::PACKAGES.invert, @user.selected_package.to_s), {prompt: true} %>
+    <%= f.select :selected_package, options_for_select(User::PACKAGES.invert, @user.selected_package.to_s), :include_blank => false %>
   </div>
 
   <div class="actions">
