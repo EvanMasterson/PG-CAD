@@ -36,6 +36,8 @@ class UploadedFilesController < ApplicationController
 
     respond_to do |format|
       if RailsValidator.validate_file( name, size) && @uploaded_file.save
+        update_storage_size
+
         format.html { redirect_to storage_uploaded_files_path(@storage), notice: 'Uploaded file was successfully created.' }
         format.json { render :show, status: :created, location: @uploaded_file }
       else
@@ -51,6 +53,8 @@ class UploadedFilesController < ApplicationController
   def destroy
     @uploaded_file.destroy
     respond_to do |format|
+      update_storage_size
+      
       format.html { redirect_to storage_uploaded_files_path(@storage), notice: 'Uploaded file was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -99,6 +103,11 @@ class UploadedFilesController < ApplicationController
 
     def observer
       add_observer(EmailNotifier.new)
+    end
+
+    def update_storage_size
+      @storage.set_size
+      @storage.save
     end
 
     def get_storage

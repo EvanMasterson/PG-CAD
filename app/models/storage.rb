@@ -11,10 +11,9 @@ class Storage < ApplicationRecord
     storage_size = 0;
     if self.uploaded_files
       self.uploaded_files.each do |file|
-        storage_size + file.size
+        storage_size += file.size
       end
     end
     return storage_size
   end
-
 end
