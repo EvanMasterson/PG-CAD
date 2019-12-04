@@ -72,11 +72,18 @@ class UploadedFilesController < ApplicationController
 
   def download_shared_file
     @uploaded_file = UploadedFile.find_by_unique_url(params[:unique_url])
-    file = @uploaded_file.image
 
-    if file.try(:file).exists?
-      data = open(file.url)
-      send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
+    respond_to do |format|      
+      if @uploaded_file
+        file = @uploaded_file.image
+        if file.try(:file).exists?
+          data = open(file.url)
+          send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
+        end
+      else
+        flash[:error]= "We're sorry, that file does not exist!"
+        format.html { redirect_to root_path }
+      end
     end
   end
 
