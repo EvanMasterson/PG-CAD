@@ -4,8 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <p id="notice"><%= notice %></p>
-    <br><br><br><br>
+    <br><br>
   </div>
   <div class="row">
     <div class="image-thumb col-sm">
@@ -28,20 +27,16 @@
         </tr>
         </tbody>
       </table>
-
+      <%= link_to 'Download', download_file_storage_uploaded_file_path(@storage) , :class=>"buttonLink btn-sm"%>
     </div>
   </div>
-  <br><br>
-  <div class="row">
-    <%= form_tag (share_file_path) do %>
-      <%= text_field_tag :email %>
-      <%= hidden_field_tag :storage_id, @storage.id %>
-      <%= hidden_field_tag :uploaded_file_id, @uploaded_file.id %>
-      <%= submit_tag "Submit!" %>
-    <% end %>
-    <%= link_to 'Download', download_file_storage_uploaded_file_path(@storage) , :class=>"buttonLink btn-sm"%>
-  </div>
-  <br><br>
 </div>
+<h2>Share Your File</h2>
+  <%= form_tag (share_file_path) do %>
+    <%= text_field_tag(:email, value = nil, options = {placeholder: "share@with.me", class: "text_input_fields uploadedFileView "})%>
+    <%= hidden_field_tag :storage_id, @storage.id %>
+    <%= hidden_field_tag :uploaded_file_id, @uploaded_file.id %>
+    <%= submit_tag "Share" %>
+  <% end %>
 
 

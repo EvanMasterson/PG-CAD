@@ -82,8 +82,17 @@ class UploadedFilesController < ApplicationController
     @email = params[:email]
     @current_user = current_user
 
-    changed
-    notify_observers(@email, @current_user, @uploaded_file.unique_url)
+    respond_to do |format|
+      if RailsValidator.validate_email(@email) && RailsValidator.validate_file(@uploaded_file.name, @uploaded_file.size)
+        changed
+        notify_observers(@email, @current_user, @uploaded_file.unique_url)
+        format.html { redirect_to storage_uploaded_file_path(id: params[:uploaded_file_id], storage_id: params[:storage_id]), notice: 'Email sent successfully' }
+        format.json { render :show, status: :created, location: @uploaded_file }
+      else
+        flash[:error] = "Invalid email, please try again!"
+        format.html { redirect_to storage_uploaded_file_path(id: params[:uploaded_file_id], storage_id: params[:storage_id]), error: 'Invalid email' }
+      end
+    end
   end
 
   private

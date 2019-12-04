@@ -150,7 +150,9 @@ h2.active {
     background-color: #56baed;
 }
 
-
+.uploadedFileView{
+    width: 100% !important;
+}
 input[type=button], input[type=submit], input[type=reset], .change_password, .buttonLink  {
     min-width: 200px;
     background-color: #56baed;
