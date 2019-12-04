@@ -42,7 +42,6 @@ class StoragesController < ApplicationController
   # PATCH/PUT /storages/1.json
   def update
     respond_to do |format|
-      @storage.set_size
       if @storage.update(storage_params)
         format.html { redirect_to @storage, notice: 'Storage was successfully updated.' }
         format.json { render :show, status: :ok, location: @storage }

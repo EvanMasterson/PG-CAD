@@ -4,5 +4,6 @@
   <%= render 'layouts/profile'%>
   <br><br><br>
   <h1>Upgrade Your Subscription (<%= User::PACKAGES[current_user.selected_package] %>)</h1>
+  <p>You have used <%= (@size_used / (1024.0 * 1024.0)).round(2) %> MB out of <%= current_user.selected_package %> GB</p>
   <%= render 'layouts/subscriptions'%>
 <% end %>
