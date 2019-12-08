@@ -67,6 +67,12 @@ class UploadedFilesController < ApplicationController
     if file.try(:file).exists?
       data = open(file.url)
       send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
+    else
+      respond_to do |format|
+        flash[:error]= "We're sorry, we could not download that file!"
+        format.html { redirect_to root_path }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -79,10 +85,16 @@ class UploadedFilesController < ApplicationController
         if file.try(:file).exists?
           data = open(file.url)
           send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
+          return
+        else
+          flash[:error]= "We're sorry, we could not download that file!"
+          format.html { redirect_to root_path }
+          format.json { head :no_content }
         end
       else
         flash[:error]= "We're sorry, that file does not exist!"
         format.html { redirect_to root_path }
+        format.json { head :no_content }
       end
     end
   end
