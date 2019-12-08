@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 20191201120530) do
   end
 
   create_table "uploaded_files", force: :cascade do |t|
-    t.string   "name",         default: "", null: false
-    t.integer  "size",         default: 0,  null: false
-    t.string   "unique_url",   default: "", null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",       default: "", null: false
+    t.integer  "size",       default: 0,  null: false
+    t.string   "unique_url", default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "storage_id"
     t.string   "image"
     t.string   "share_id"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20191201120530) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
-    t.integer   "selected_package"
+    t.integer  "selected_package"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
