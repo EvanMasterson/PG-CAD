@@ -1,6 +1,6 @@
 class StoragesController < ApplicationController
-  before_action :set_storage, only: [:show, :edit, :update, :destroy]
   before_action :get_user
+  before_action :set_storage, only: [:show, :edit, :update, :destroy]
 
   # GET /storages
   # GET /storages.json
@@ -11,6 +11,10 @@ class StoragesController < ApplicationController
   # GET /storages/1
   # GET /storages/1.json
   def show
+    if @storage.nil?
+      flash[:error] = "Storage does not exist, or you do not have permission to access"
+      redirect_to root_path
+    end
   end
 
   # GET /storages/new
@@ -63,13 +67,13 @@ class StoragesController < ApplicationController
   end
 
   private
-  def get_user
-    @user = User.find(current_user.id)
-  end
+    def get_user
+      @user = User.find(current_user.id)
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_storage
-      @storage = Storage.find(params[:id])
+      @storage = Storage.find_by(user_id: @user.id, id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

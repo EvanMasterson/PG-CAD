@@ -8,12 +8,21 @@ class UploadedFilesController < ApplicationController
   # GET /uploaded_files
   # GET /uploaded_files.json
   def index
-    @uploaded_files = @storage.uploaded_files
+    if !@storage.nil?
+      @uploaded_files = @storage.uploaded_files
+    else
+      flash[:error] = "Storages or Files do not exist, or you do not have permission to access"
+      redirect_to root_path
+    end
   end
 
   # GET /uploaded_files/1
   # GET /uploaded_files/1.json
   def show
+    if @uploaded_file.nil?
+      flash[:error] = "File does not exist, or you do not have permission to access"
+      redirect_to root_path
+    end
   end
 
   # GET /uploaded_files/new
@@ -130,12 +139,17 @@ class UploadedFilesController < ApplicationController
     end
 
     def get_storage
-      @storage = Storage.find(params[:storage_id])
+      @storage = Storage.find_by(user_id: current_user.id, id: params[:storage_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_uploaded_file
-      @uploaded_file = @storage.uploaded_files.find(params[:id])
+      if !@storage.nil?
+        @uploaded_file = @storage.uploaded_files.find_by_id(params[:id])
+      else
+        flash[:error] = "File does not exist, or you do not have permission to access"
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
