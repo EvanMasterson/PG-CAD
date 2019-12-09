@@ -2,26 +2,25 @@
 
 * RoR versions
   ```
-  ruby 2.6.3
   rails 5.0.7.2
   
   # Gemfile
   bundle install
   ```
 
-* Setup Configuration (Linux/AWS)
+* Setup Configuration (AWS)
   ```
   # Install PostgreSQL and initial DB creation
   sudo yum install postgresql postgresql-server postgresql-devel postgresql-contrib postgresql-docs
   sudo service postgresql initdb
   sudo service postgresql start
 
-  # Create user for rails to connect to DB
-  sudo -u postgres createuser -s ec2-user
-  sudo -u postgres createdb ec2-user
+  # Create user on EC2 instance for rails to connect to RDS
+  sudo -u postgres createuser -s <USER>
+  sudo -u postgres createdb <USER>
   sudo su postgres
   psql
-  ALTER USER "ec2-user" WITH SUPERUSER;
+  ALTER USER "<USER>" WITH SUPERUSER;
   \q
   exit
   ```
@@ -37,6 +36,6 @@
   # Locally (defaults to port 3000)
   rails s
   
-  # AWS (defaults to port 8080, change IP to EC2 Private IP)
-  rails s -b $IP
+  # AWS (defaults to port 3000, bind to 0.0.0.0 as EC2 does not support localhost)
+  rails s -e production -b 0.0.0.0 -d
   ```
