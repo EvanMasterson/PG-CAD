@@ -32,6 +32,7 @@ class StoragesController < ApplicationController
     @storage = Storage.new(storage_params)
     respond_to do |format|
       if @storage.save
+        # binding storage to user
         @user.storages << @storage
         format.html { redirect_to @storage, notice: 'Storage was successfully created.' }
         format.json { render :show, status: :created, location: @storage }
@@ -72,6 +73,7 @@ class StoragesController < ApplicationController
     end
 
     # Use callbacks to share common setup or constraints between actions.
+    # Find storage by users => this way only the owner of the storage will see the storages and the files in them.
     def set_storage
       @storage = Storage.find_by(user_id: @user.id, id: params[:id])
     end

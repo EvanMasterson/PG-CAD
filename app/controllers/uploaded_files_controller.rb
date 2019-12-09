@@ -40,10 +40,12 @@ class UploadedFilesController < ApplicationController
     @uploaded_file = @storage.uploaded_files.build(uploaded_file_params)
     @uploaded_file.set_self
 
+    # get the filename and the size from the uploaded file parameters
     name = params[:uploaded_file][:image].original_filename
     size = :image.size
 
     respond_to do |format|
+      # validate file with our custom gem that checks name, extension and size
       if RailsValidator.validate_file( name, size) && @uploaded_file.save
         update_storage_size
 
@@ -86,13 +88,20 @@ class UploadedFilesController < ApplicationController
   end
 
   def download_shared_file
+    # foind the uploaded file with the unique_url
     @uploaded_file = UploadedFile.find_by_unique_url(params[:unique_url])
 
     respond_to do |format|      
       if @uploaded_file
+        # associate file with the imagesaved to the database
         file = @uploaded_file.image
         if file.try(:file).exists?
+          # if the file exists, we open it with the url. This returns a File object, so
+          # we are able to call functions on it as read
           data = open(file.url)
+          # uses X-SendFile to send the file when set to true
+          # Since it is using the webserver to send files, it may lower memory consumtion on the server
+          # and may not block the application for further requests
           send_data data.read, type: data.content_type, x_sendfile: true, :filename => @uploaded_file.name
           return
         else
@@ -109,18 +118,26 @@ class UploadedFilesController < ApplicationController
   end
 
   def share_file
+    # find storage by storage_id and find file by uploaded_file_id
     @storage = Storage.find_by_id(params[:storage_id])
     @uploaded_file = @storage.uploaded_files.find_by_id(params[:uploaded_file_id])
+    # take email as a param from the view
     @email = params[:email]
+    # define current user with Devise's built in current_user
     @current_user = current_user
 
     respond_to do |format|
+      # validate email and file with our custom gem
       if RailsValidator.validate_email(@email) && RailsValidator.validate_file(@uploaded_file.name, @uploaded_file.size)
+        # set changed flag to true otherwise notification won't be sent
         changed
+        # notify observer and pass the email where we want the email to be sent, the current user and the url that can be clicked
         notify_observers(@email, @current_user, @uploaded_file.unique_url)
+        # redirect and show success message
         format.html { redirect_to storage_uploaded_file_path(id: params[:uploaded_file_id], storage_id: params[:storage_id]), notice: 'Email sent successfully' }
         format.json { render :show, status: :created, location: @uploaded_file }
       else
+        # flash error and redirect
         flash[:error] = "Invalid email, please try again!"
         format.html { redirect_to storage_uploaded_file_path(id: params[:uploaded_file_id], storage_id: params[:storage_id]), error: 'Invalid email' }
       end
@@ -139,11 +156,13 @@ class UploadedFilesController < ApplicationController
     end
 
     def get_storage
+      # find storage by the logged in user_id and storage_id to prevent unaythorised access to storages
       @storage = Storage.find_by(user_id: current_user.id, id: params[:storage_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_uploaded_file
+
       if !@storage.nil?
         @uploaded_file = @storage.uploaded_files.find_by_id(params[:id])
       else
