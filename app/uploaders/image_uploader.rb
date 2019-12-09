@@ -4,12 +4,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   after :remove, :delete_empty_upstream_dirs # Clean up empty directories when the files in them are deleted
 
-  # Choose what kind of storage to use for this uploader:
-  # storage :file
+  # we have used fog to upload files to S3
   storage :fog
 
-  # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
+  # We have used the generated unique_url from the UploadedFile model to create a unique path/directory for the uploaded file
   def store_dir
     "uploads/#{model.unique_url}"
   end

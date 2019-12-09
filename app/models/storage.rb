@@ -7,6 +7,8 @@ class Storage < ApplicationRecord
     self[:size] = calculate_storage_size
   end
 
+  # iterating through on the uploaded files  in a storage and adding up their sizes to calculate storage size
+  # returns a decimal number 
   def calculate_storage_size
     storage_size = 0;
     if self.uploaded_files
